@@ -1,0 +1,33 @@
+import pandas as pd
+import numpy as np
+import statistics as st
+
+
+df = pd.read_csv('Iris.csv')
+print(df)
+
+
+df.columns
+df.head()
+df.info()
+
+
+df.dtypes
+df.isnull().sum()
+df.describe()# standard deviation ,mean,percentile distr info
+
+
+
+df.value_counts("Species")
+
+
+
+from sklearn.datasets import load_iris
+iris = load_iris()#load direclty iris and get description
+#view data description and information
+print(iris.DESCR)
+
+
+
+
+

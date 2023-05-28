@@ -1,0 +1,26 @@
+import pandas as pd
+import numpy as np
+import random
+
+
+#accessing the dataframe
+cov_country_wise=pd.read_csv("country_wise_latest.csv")
+cov_country_wise
+
+
+cov_country_wise.isnull().sum()
+
+
+cov_country_wise.describe()   #initial stats
+
+
+cov_country_wise.size #to get size
+
+
+cov_country_wise.shape #it gives rows and coloumns of data set
+
+
+cov_country_wise.info()     #check for null values and data type
+
+
+cov_country_wise.dtypes     #to check data types of variable in dataset

@@ -1,0 +1,190 @@
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+dataset = pd.read_csv('https://raw.githubusercontent.com/mk-gurucharan/Classification/master/IrisDataset.csv')
+X = dataset.iloc[:,:4].values
+y = dataset['species'].values
+dataset.head(5)
+
+
+dataset['species'].unique()
+
+
+
+dataset.describe(include='all')
+
+dataset.info()
+
+
+dataset.sum()
+
+dataset.isnull().sum()
+
+
+import missingno as msno
+msno.bar(dataset,figsize=(8,6),color='skyblue')
+plt.show()
+
+
+dataset.isnull().sum()
+
+
+import missingno as msno
+msno.bar(dataset,figsize=(8,6),color='skyblue')
+plt.show()
+
+sns.relplot(x='SepalLengthCm',y='SepalWidthCm',data=dataset,hue='Species',style='Species')
+
+g=sns.relplot(x='sepal_length',y='sepal_width',data=dataset,hue='species',style='species')
+g.fig.set_size_inches(10,5)
+plt.show()
+
+
+
+
+g=sns.relplot(x='petal_length',y='petal_width',data=dataset,hue='species',style='species')
+g.fig.set_size_inches(10,5)
+plt.show()
+
+
+
+sns.pairplot(dataset,hue="species")
+plt.show()
+
+
+
+plt.figure(figsize=(15,10))
+plt.subplot(2,2,1)
+sns.boxplot(x='species',y='petal_length',data=dataset)
+plt.subplot(2,2,2)
+sns.boxplot(x='species',y='petal_width',data=dataset)
+plt.subplot(2,2,3)
+sns.boxplot(x='species',y='sepal_length',data=dataset)
+plt.subplot(2,2,4)
+sns.boxplot(x='species',y='sepal_width',data=dataset)
+plt.show()
+
+
+
+
+
+plt.subplots(figsize=(10,7))
+sns.boxplot(data=dataset).set_title("Distribution of Sepal_length, Sepal_width, petal_length and petal_width of 3 flowers")
+plt.show()
+
+
+
+plt.figure(figsize=(15,10))
+plt.subplot(2,2,1)
+sns.violinplot(x='species',y='petal_length',data=dataset)
+plt.subplot(2,2,2)
+sns.violinplot(x='species',y='petal_width',data=dataset)
+plt.subplot(2,2,3)
+sns.violinplot(x='species',y='sepal_length',data=dataset)
+plt.subplot(2,2,4)
+sns.violinplot(x='species',y='sepal_width',data=dataset)
+plt.show()
+
+
+dataset.corr()
+
+
+
+#plt.subplots(figsize = (8,8))
+sns.heatmap(dataset.corr(),annot=True,fmt="f").set_title("Corelation of attributes (petal length,width and sepal length,width) among Iris species")
+plt.show()
+
+
+X=dataset.iloc[:,0:4].values
+y=dataset.iloc[:,4].values
+
+
+
+from sklearn.preprocessing import LabelEncoder
+le = LabelEncoder()
+y = le.fit_transform(y)
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2)
+from sklearn.preprocessing import StandardScaler
+sc = StandardScaler()
+X_train = sc.fit_transform(X_train)
+X_test = sc.transform(X_test)
+from sklearn.naive_bayes import GaussianNB
+classifier = GaussianNB()
+classifier.fit(X_train, y_train)
+
+
+y_pred = classifier.predict(X_test) 
+y_pred
+
+
+
+from sklearn.metrics import confusion_matrix
+cm = confusion_matrix(y_test, y_pred)
+from sklearn.metrics import accuracy_score 
+print ("Accuracy : ", accuracy_score(y_test, y_pred))
+cm
+
+
+df = pd.DataFrame({'Real Values':y_test, 'Predicted Values':y_pred})
+df
+
+
+from sklearn.metrics import confusion_matrix
+
+cm = confusion_matrix(y_test, y_pred)
+
+print('Confusion matrix\n\n', cm)
+
+print('\nTrue Positives(TP) = ', cm[0,0])
+
+print('\nTrue Negatives(TN) = ', cm[1,1])
+
+print('\nFalse Positives(FP) = ', cm[0,1])
+
+print('\nFalse Negatives(FN) = ', cm[1,0])
+
+
+
+
+
+ #1: Histogram for Sepal Length
+
+plt.figure(figsize = (10, 7))
+x = dataset["sepal_length"]
+  
+plt.hist(x, bins = 20, color = "green")
+plt.title("sepal_length")
+plt.xlabel("sepal_length")
+plt.ylabel("Count")
+plt.show()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
